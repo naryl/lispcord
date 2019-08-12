@@ -33,8 +33,8 @@
                 :bot bot
                 :type :patch
                 :content (jmake
-                          `(("name" . ,(slot-value e 'name))
-                            ("roles" . ,(slot-value e 'roles)))))))
+                          `(("name" . ,(lc:name e))
+                            ("roles" . ,(lc:roles e)))))))
 
 (defmethod edit ((e lc:emoji) (g lc:guild) &optional (bot *client*))
   (cache :emoji
@@ -42,8 +42,8 @@
                 :bot bot
                 :type :patch
                 :content (jmake
-                    `(("name" . ,(slot-value e 'name))
-                      ("roles" . ,(slot-value e 'roles)))))))
+                          `(("name" . ,(lc:name e))
+                            ("roles" . ,(lc:roles e)))))))
 
 (defun erase-emoji (emoji guild &optional (bot *client*))
   (declare (type (or snowflake lc:guild) guild)
