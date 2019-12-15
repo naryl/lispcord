@@ -174,10 +174,10 @@
           :bot bot
           :type :patch
           :content (jmake `(("name" . ,(lc:name r))
-                            ("permissions" . (lc:permissions r))
-                            ("color" . (lc:color r))
-                            ("hoist" . (lc:hoistp r))
-                            ("mentionable" . (lc:mentionablep r)))))))
+                            ("permissions" . ,(lc:permissions r))
+                            ("color" . ,(lc:color r))
+                            ("hoist" . ,(or (lc:hoistp r) :false))
+                            ("mentionable" . ,(or (lc:mentionablep r) :false)))))))
 
 (defmethod erase ((r lc:role) &optional (bot *client*))
   (discord-req (str-concat "guilds/" (lc:guild-id r)
