@@ -27,11 +27,13 @@
       ("afk" . ,afk)
       ("status" . ,status))))
 
-(defun send-identify (bot)
+(defun lispcord.gateway::send-identify (bot &optional selfbot)
   (dprint :info "~&Send identify for ~a~%" (bot-token bot))
   (send-payload bot
                 :op 2
-                :data `(("token" . ,(str-concat "Bot " (bot-token bot)))
+                :data `(("token" . ,(str-concat
+                                     (if selfbot "" "Bot ")
+                                     (bot-token bot)))
                         ("properties" . (("$os" . ,+os+)
                                          ("$browser" . ,+lib+)
                                          ("$device" . ,+lib+)))
@@ -41,7 +43,7 @@
                         ("presence" . ,(make-status bot
                                                     "online"
                                                     nil
-                                                    nil)))))
+nil)))))
 
 (defun send-resume (bot)
   (dprint :info "~&Resuming connection for session ~a...~%"

@@ -24,8 +24,10 @@ It may be set by make-bot!")
 (defun user-agent (bot)
   (str-concat "DiscordBot (" *bot-url* ", " (bot-version bot) ")"))
 
-(defun headers (bot)
-  (list (cons "Authorization" (str-concat "Bot " (bot-token bot)))))
+(defun headers (bot &optional selfbot)
+  (list (cons "Authorization"
+              (str-concat (if selfbot "" "Bot ")
+                          (bot-token bot)))))
 
 
 
