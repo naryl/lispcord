@@ -3,8 +3,10 @@
 ;;;; This is where all the high level abstractions for the user space
 ;;;; will go!
 
-(defun make-bot (token &key (version "0.0.1"))
+(defun make-bot (token &key (version "0.0.1") selfbot)
   (unless token (error "Token required!"))
+  (unless selfbot
+    (setf token (concatenate 'string "Bot " token)))
   (let ((b (primitive-make-bot :token token :version version)))
     (setf *client* b)
     b))

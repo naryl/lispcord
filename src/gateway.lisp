@@ -27,13 +27,11 @@
       ("afk" . ,afk)
       ("status" . ,status))))
 
-(defun lispcord.gateway::send-identify (bot &optional selfbot)
+(defun lispcord.gateway::send-identify (bot)
   (dprint :info "~&Send identify for ~a~%" (bot-token bot))
   (send-payload bot
                 :op 2
-                :data `(("token" . ,(str-concat
-                                     (if selfbot "" "Bot ")
-                                     (bot-token bot)))
+                :data `(("token" . ,(bot-token bot))
                         ("properties" . (("$os" . ,+os+)
                                          ("$browser" . ,+lib+)
                                          ("$device" . ,+lib+)))
